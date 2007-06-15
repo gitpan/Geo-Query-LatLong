@@ -4,18 +4,17 @@ package Geo::Query::LatLong;
 # Geo::Query::LatLong
 # Author: Reto Schaer
 # Copyright (c) 2007
+#
+our $VERSION = '0.8002';
 ############################################################
 
 use strict;
-my $package = __PACKAGE__;
-
-our $VERSION = '0.8001';
 
 use LWP::UserAgent;
 use HTTP::Request::Common;
 
-
 # GLOBAL VARIABLES
+my $package = __PACKAGE__;
 my %Var = ();
 my $contentType = "";
 my $ua;
@@ -28,13 +27,9 @@ sub new {
 	my $type = shift;
 	my %params = @_;
 	my $self = {};
-
 	$self->{'debug'} = $params{'debug'};
-
 	Debug "$package V$VERSION" if $self->{'debug'};
-
 	$ua = LWP::UserAgent->new( agent => "Geo::Query::LatLong $VERSION" );
-
 	bless $self, $type;
 }
 
@@ -50,16 +45,13 @@ sub query {
 
 	if ($self->{'debug'}) { Debug "$_ = $args{$_}" foreach keys %args; }
 
-	#my $url = 'http://www.infocopter.com/cgi-bin/env.pl';
 	my $url = 'http://geo.pg' . 'ate.net/query/';
 
 	my $r = HTTP::Request->new('GET', $url . "?city=$args{'city'}&country_code=$args{'country_code'}");
-
 	my $resp = $ua->request($r);
 
 	if ($resp->is_success) {
 		my @lines = split /\n/, $resp->content();
-
 		my $result = '';
 		foreach (@lines) {
 			my ($key, $val) = split /\t/;
@@ -92,7 +84,7 @@ Geo::Query::LatLong - Perl module to query latitude and longitude from a city.
 
 =head1 DESCRIPTION
 
-Query latitude and longitude from any city - worldwide.
+Query latitude and longitude from any city in any country.
 
 =head2 Query example
 
@@ -102,6 +94,10 @@ Query latitude and longitude from any city - worldwide.
 
   my $res = $geo->query( city => $CITY, country_code => 'SZ' );
 
+  print "Latitude and longitude of $CITY: ",
+		$res->{'lat'}, ' / ', $res->{'lng'}, "\n";
+
+  # List all results
   foreach (keys %{$res}) {
 	print "$_ = ", $res->{$_}, "\n";
   }

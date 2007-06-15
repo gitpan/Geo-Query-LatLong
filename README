@@ -1,16 +1,10 @@
-Geo-Query-LatLong version 0.8001
-================================
+Geo::Query::LatLong
+===================
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+Perl module to query latitude and longitude from a city.
 
-A README file is required for CPAN modules since CPAN extracts the
-README file from a module distribution so that people browsing the
-archive can use it get an idea of the modules uses. It is usually a
-good idea to provide version information here so that people can
-decide whether fixes for the module are worth downloading.
+There should be no special dependencies to install the module.
+
 
 INSTALLATION
 
@@ -25,7 +19,8 @@ DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-  blah blah blah
+Nothing special.
+
 
 COPYRIGHT AND LICENCE
 
@@ -36,5 +31,4 @@ Copyright (C) 2007 by root
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.3 or,
 at your option, any later version of Perl 5 you may have available.
-
 
