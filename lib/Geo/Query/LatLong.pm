@@ -5,7 +5,7 @@ package Geo::Query::LatLong;
 # Author: Reto Schaer
 # Copyright (c) 2007
 #
-our $VERSION = '0.8002';
+our $VERSION = '0.8003';
 ############################################################
 
 use strict;
@@ -102,14 +102,23 @@ Query latitude and longitude from any city in any country.
 	print "$_ = ", $res->{$_}, "\n";
   }
 
+=head3 Parameter country_code
+
+  Country Codes according to FIPS 10: http://de.wikipedia.org/wiki/FIPS_10
+
+=head3 Parameter city
+
+  Use the english translations for the city names, e.g. Zurich for Zuerich, Munich for Muenchen.
+
 =head2 EXPORT
 
 None by default.
 
 =head1 SEE ALSO
 
-http://www.infocopter.com/perl/modules/
 http://meta.pgate.net/perl-modules/
+
+http://www.infocopter.com/perl/modules/
 
 =head1 AUTHOR
 
