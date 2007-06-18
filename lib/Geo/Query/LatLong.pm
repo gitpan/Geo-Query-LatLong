@@ -5,7 +5,7 @@ package Geo::Query::LatLong;
 # Author: Reto Schaer
 # Copyright (c) 2007
 #
-our $VERSION = '0.8003';
+our $VERSION = '0.8004';
 ############################################################
 
 use strict;
@@ -42,12 +42,14 @@ sub query {
 
 	$args{'country_code'} ||= 'SZ';
 	$args{'city'        } ||= 'Zurich';
+	$args{'exact'       } ||= 'on';
 
 	if ($self->{'debug'}) { Debug "$_ = $args{$_}" foreach keys %args; }
 
 	my $url = 'http://geo.pg' . 'ate.net/query/';
 
-	my $r = HTTP::Request->new('GET', $url . "?city=$args{'city'}&country_code=$args{'country_code'}");
+	my $r = HTTP::Request->new('GET', $url .
+		"?city=$args{'city'}&country_code=$args{'country_code'}&exact=$args{'exact'}");
 	my $resp = $ua->request($r);
 
 	if ($resp->is_success) {
@@ -90,9 +92,9 @@ Query latitude and longitude from any city in any country.
 
   use Geo::Query::LatLong;
 
-  my $CITY = $ARGV[0] || 'Zurich';
+  $CITY = $ARGV[0] || 'Zurich';
 
-  my $res = $geo->query( city => $CITY, country_code => 'SZ' );
+  $res = $geo->query( city => $CITY, country_code => 'SZ' ); # FIPS 10 country code
 
   print "Latitude and longitude of $CITY: ",
 		$res->{'lat'}, ' / ', $res->{'lng'}, "\n";
@@ -101,6 +103,14 @@ Query latitude and longitude from any city in any country.
   foreach (keys %{$res}) {
 	print "$_ = ", $res->{$_}, "\n";
   }
+
+=head2 Another example
+
+  # Switch exactness to "off" increase the chance you get a result.
+
+  $res = $geo->query( city => 'Unterwalden', country_code => 'SZ', exact => 'off' ); # exact default: on
+
+  print "-- $_ = ", $res->{$_}, "\n" foreach keys %{$res};
 
 =head3 Parameter country_code
 
