@@ -8,7 +8,7 @@ package Geo::Query::LatLong;
 #
 # http://meta.pgate.net/geo-query-latlong/
 #
-our $VERSION = '0.8006';
+our $VERSION = '0.8007';
 ############################################################
 
 use strict;
@@ -100,7 +100,7 @@ sub google_query(%) {
 	my %args = @_;
 	$args{'location'} ||= '';
 
-	use JSON::Syck;
+	eval 'use JSON::Syck; 1' or print STDERR "ERR JSON::Syck is missing\n";
 	use Encode;
 	# use URI;
 
@@ -109,7 +109,6 @@ sub google_query(%) {
 
 	my $res = $ua->get($uri);
 
-	# Ugh, Google Maps returns so stupid HTTP header
 	# Content-Type: text/javascript; charset=UTF-8; charset=Shift_JIS
 	my @ctype = $res->content_type;
 	my $charset = ($ctype[1] =~ /charset=([\w\-]+)$/)[0] || "utf-8"; # Thanks to Tatsuhiko Miyagawa from Geo-Coder-Google
@@ -117,6 +116,7 @@ sub google_query(%) {
 	my $content = Encode::decode($charset, $res->content);
 
 	local $JSON::Syck::ImplicitUnicode = 1;
+	1 if defined $JSON::Syck::ImplicitUnicode; # prevent warning
 	my $data = JSON::Syck::Load($content);
 
 	my @placemark = @{ $data->{Placemark} || [] };
