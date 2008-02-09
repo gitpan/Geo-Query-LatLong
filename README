@@ -3,7 +3,7 @@ Geo::Query::LatLong
 
 Perl module to query latitude and longitude from a city.
 
-There should be no special dependencies to install the module.
+Please find more information on http://meta.pgate.net/geo-query-latlong/
 
 
 INSTALLATION
@@ -15,18 +15,21 @@ To install this module type the following:
    make test
    make install
 
+
 DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-Nothing special.
+LWP::UserAgent
+
+This dependency should be automatically be installed by the CPAN installer.
 
 
 COPYRIGHT AND LICENCE
 
 Put the correct copyright and licence information here.
 
-Copyright (C) 2007 by root
+Copyright (C) 2007 - 2008 by reto
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.3 or,

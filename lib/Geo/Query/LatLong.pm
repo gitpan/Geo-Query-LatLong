@@ -4,11 +4,11 @@ package Geo::Query::LatLong;
 # Geo::Query::LatLong
 #
 # Author: Reto Schaer
-# Copyright (c) 2007
+# Copyright (c) 2007 - 2008
 #
 # http://meta.pgate.net/geo-query-latlong/
 #
-our $VERSION = '0.8007';
+our $VERSION = '0.8008';
 ############################################################
 
 use strict;
@@ -228,7 +228,7 @@ Reto Schaer, E<lt>retoh@cpan-cuthere.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2007 by Reto Schaer
+Copyright (C) 2007 - 2008 by Reto Schaer
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.6 or,
