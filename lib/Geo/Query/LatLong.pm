@@ -8,7 +8,7 @@ package Geo::Query::LatLong;
 #
 # http://meta.pgate.net/geo-query-latlong/
 #
-our $VERSION = '0.8010';
+our $VERSION = '0.8011';
 ############################################################
 
 use strict;
